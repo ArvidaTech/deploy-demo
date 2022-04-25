@@ -1,4 +1,4 @@
-Pipeline {
+pipeline {
     cleanWs()
     agent any
     /*environment {
