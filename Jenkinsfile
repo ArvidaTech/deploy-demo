@@ -18,9 +18,9 @@ pipeline {
       }
     }
 	
-    stage("Build: docker img") {
+    def img = stage("Build: docker img") {
       steps {
-        img = docker.build("$IMAGE",  '.')
+        docker.build("$IMAGE",  '.')
       }
     }
 	
