@@ -1,10 +1,9 @@
 node {
-	environment {
+    environment {
 	registry = "arvidatech/demo-pipeline"
 	registryCredential = 'ArvidaDockerhub'
 	dockerImage = ''
-	}
-
+    }
     stage('Build - Clone') {
           git 'https://github.com/ArvidaTech/build-demo.git'
     }
