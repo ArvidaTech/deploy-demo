@@ -1,7 +1,7 @@
 node {
 	environment {
 	registry = "arvidatech/demo-pipeline"
-	registryCredential = 'arvidatech'
+	registryCredential = 'ArvidaDockerhub'
 	dockerImage = ''
 	}
 
