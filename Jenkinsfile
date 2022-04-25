@@ -1,4 +1,4 @@
-node {
+Pipeline {
     cleanWs()
     /*environment {
 	registry = "arvidatech/demo-pipeline"
