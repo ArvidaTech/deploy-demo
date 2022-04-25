@@ -5,6 +5,8 @@ node {
     }*/
     def registry = "arvidatech/demo-pipeline"
     def registryCredential = 'ArvidaDockerhub'
+    def IMAGE="${registry}:version-${env.BUILD_ID}"
+
     stage('Build - Clone') {
           git 'https://github.com/ArvidaTech/build-demo.git'
     }
@@ -12,7 +14,7 @@ node {
             sh 'mvn package'
     }
     def img = stage('Build') {
-          docker.build $registry + ":$BUILD_NUMBER"
+          docker.build("$IMAGE",  '.')
     }
     stage('Build - Test') {
             img.withRun("--name run-$BUILD_ID -p 8081:8080") { c ->
@@ -38,7 +40,7 @@ node {
           become: true,
           playbook: 'playbook.yml',
          inventory: '${HOST},',
-          extras: "--extra-vars 'image=$img'"
+          extras: "--extra-vars 'image==$IMAGE'"
       )
     }
 
