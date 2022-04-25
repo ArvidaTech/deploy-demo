@@ -1,14 +1,14 @@
 pipeline {
-    cleanWs()
-    agent any
-    /*environment {
+    environment {
 	registry = "arvidatech/demo-pipeline"
 	registryCredential = 'ArvidaDockerhub'
-    }*/
-    def registry = "arvidatech/demo-pipeline"
+	IMAGE="${registry}:version-${env.BUILD_ID}"
+    }
+    
+    /*def registry = "arvidatech/demo-pipeline"
     def registryCredential = 'ArvidaDockerhub'
-    def IMAGE="${registry}:version-${env.BUILD_ID}"
-
+    def IMAGE="${registry}:version-${env.BUILD_ID}"*/
+    agent any
     stage('Build - Clone') {
           git 'https://github.com/ArvidaTech/build-demo.git'
     }
