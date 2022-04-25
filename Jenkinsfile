@@ -20,15 +20,19 @@ pipeline {
 	
     stage("Build: docker img") {
       steps {
-        dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+	  	script { 
+          dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+		}
       }
     }
 	
     stage("Build: push docker image") {
       steps {
-	    docker.withRegistry('', registryCredential) {
+	    script { 
+		  docker.withRegistry('', registryCredential) {
 			dockerImage.push 'latest'
 			dockerImage.push()
+			}
 		}	
       }
     }
