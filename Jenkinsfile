@@ -21,15 +21,15 @@ pipeline {
 	
     stage("Build: docker img") {
       steps {
-        img = docker.build("$IMAGE",  '.')
+        ${img} = docker.build("$IMAGE",  '.')
       }
     }
 	
     stage("Build: push docker image") {
       steps {
-	        docker.withRegistry('', ${registryCredential} ) {
-				img.push 'latest'
-				img.push()
+	    docker.withRegistry('', ${registryCredential} ) {
+			img.push 'latest'
+			img.push()
 		}	
       }
     }
