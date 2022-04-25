@@ -36,5 +36,22 @@ pipeline {
 		}	
       }
     }
+    stage("Deploy:Clone git repo") {
+      steps {
+        git 'https://github.com/ArvidaTech/deploy-demo.git'
+      }
+    }
+    stage("Deploy - End") {
+      steps{
+	    ansiblePlaybook (
+		  colorized: true,
+		  become: true,
+		  playbook: 'playbook.yml',
+		  inventory: '${HOST},',
+		  extras: "--extra-vars 'image==$IMAGE'"
+		)
+	  }	
+    }
+	
   }
 }
