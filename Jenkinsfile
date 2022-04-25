@@ -1,9 +1,10 @@
 node {
-    environment {
+    /*environment {
 	registry = "arvidatech/demo-pipeline"
 	registryCredential = 'ArvidaDockerhub'
-	dockerImage = ''
-    }
+    }*/
+    def registry = "arvidatech/demo-pipeline"
+    def registryCredential = 'ArvidaDockerhub'
     stage('Build - Clone') {
           git 'https://github.com/ArvidaTech/build-demo.git'
     }
@@ -11,7 +12,7 @@ node {
             sh 'mvn package'
     }
     def img = stage('Build') {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          docker.build $registry + ":$BUILD_NUMBER"
     }
     stage('Build - Test') {
             img.withRun("--name run-$BUILD_ID -p 8081:8080") { c ->
@@ -23,7 +24,7 @@ node {
           }
     }
     stage('Build - Push') {
-          docker.withRegistry('', registryCredential ) {
+          docker.withRegistry('', $registryCredential ) {
               img.push 'latest'
               img.push()
           }
