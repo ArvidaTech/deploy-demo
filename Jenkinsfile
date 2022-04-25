@@ -1,11 +1,10 @@
-def registry = "arvidatech/demo-pipeline"
-def registryCredential = 'ArvidaDockerhub'
-def IMAGE="${registry}:version-${env.BUILD_ID}"
-def img =''
-  
 pipeline {
+  environment { 
+    registry = "arvidatech/demo-pipeline" 
+    registryCredential = 'ArvidaDockerhub' 
+    dockerImage = '' 
+  }
   agent any
-
   stages {
     stage("Build:Clone git repo") {
       steps {
@@ -21,15 +20,15 @@ pipeline {
 	
     stage("Build: docker img") {
       steps {
-        ${img} = docker.build("$IMAGE",  '.')
+        dockerImage = docker.build registry + ":$BUILD_NUMBER" 
       }
     }
 	
     stage("Build: push docker image") {
       steps {
-	    docker.withRegistry('', ${registryCredential} ) {
-			img.push 'latest'
-			img.push()
+	    docker.withRegistry('', registryCredential) {
+			dockerImage.push 'latest'
+			dockerImage.push()
 		}	
       }
     }
