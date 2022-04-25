@@ -38,7 +38,7 @@ node {
           become: true,
           playbook: 'playbook.yml',
          inventory: '${HOST},',
-          extras: "--extra-vars 'image=$IMAGE'"
+          extras: "--extra-vars 'image=$img'"
       )
     }
 
