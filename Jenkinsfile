@@ -1,8 +1,8 @@
-pipeline {
-  def registry = "arvidatech/demo-pipeline"
-  def registryCredential = 'ArvidaDockerhub'
-  def IMAGE="${registry}:version-${env.BUILD_ID}"
+def registry = "arvidatech/demo-pipeline"
+def registryCredential = 'ArvidaDockerhub'
+def IMAGE="${registry}:version-${env.BUILD_ID}"
   
+pipeline {
   agent any
 
   stages {
