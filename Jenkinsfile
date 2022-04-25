@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage("Build:Clone git repo") {
       steps {
-        git 'https://github.com/ArvidaTech/build-demo.git'
+        git branch: 'main', url: 'https://github.com/ArvidaTech/build-demo.git'
       }
     }
 
@@ -38,7 +38,7 @@ pipeline {
     }
     stage("Deploy:Clone git repo") {
       steps {
-        git 'https://github.com/ArvidaTech/deploy-demo.git'
+        git branch: 'main', url: 'https://github.com/ArvidaTech/deploy-demo.git'
       }
     }
     stage("Deploy - End") {
