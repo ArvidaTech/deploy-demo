@@ -27,9 +27,9 @@ pipeline {
 	
     stage("Build: push docker image") {
       steps {
-	      docker.withRegistry('', ${registryCredential} ) {
-			img.push 'latest'
-		     img.push()
+	        docker.withRegistry('', ${registryCredential} ) {
+				img.push 'latest'
+				img.push()
 		}	
       }
     }
