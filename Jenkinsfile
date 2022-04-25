@@ -1,5 +1,6 @@
 Pipeline {
     cleanWs()
+    agent any
     /*environment {
 	registry = "arvidatech/demo-pipeline"
 	registryCredential = 'ArvidaDockerhub'
