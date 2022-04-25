@@ -1,4 +1,5 @@
 node {
+    cleanWs()
     /*environment {
 	registry = "arvidatech/demo-pipeline"
 	registryCredential = 'ArvidaDockerhub'
