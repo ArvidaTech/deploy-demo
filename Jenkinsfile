@@ -1,6 +1,7 @@
 def registry = "arvidatech/demo-pipeline"
 def registryCredential = 'ArvidaDockerhub'
 def IMAGE="${registry}:version-${env.BUILD_ID}"
+def img =''
   
 pipeline {
   agent any
@@ -18,15 +19,15 @@ pipeline {
       }
     }
 	
-    def img = stage("Build: docker img") {
+    stage("Build: docker img") {
       steps {
-        docker.build("$IMAGE",  '.')
+        img = docker.build("$IMAGE",  '.')
       }
     }
 	
     stage("Build: push docker image") {
       steps {
-        docker.withRegistry('', $registryCredential ) {
+	      docker.withRegistry('', ${registryCredential} ) {
 			img.push 'latest'
 		     img.push()
 		}	
