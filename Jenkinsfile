@@ -7,13 +7,6 @@ pipeline {
   agent any
   stages { 
 	  
-    stage('Initialize'){
-      steps {
-        def dockerHome = tool 'myDocker'
-        env.PATH = "${dockerHome}/bin:${env.PATH}"
-      }
-    }
-	  
     stage("Build:Clone git repo") {
       steps {
         git branch: 'main', url: 'https://github.com/ArvidaTech/build-demo.git'
