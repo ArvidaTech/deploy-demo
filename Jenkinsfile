@@ -42,14 +42,14 @@ pipeline {
         git branch: 'main', url: 'https://github.com/ArvidaTech/deploy-demo.git'
       }
     }
-    stage("Deploy - End") {
+    stage("Deploy - With Ansible") {
       steps{
 	    ansiblePlaybook (
 		  colorized: true,
 		  become: true,
 		  playbook: 'playbook.yml',
 		  inventory: '${HOST},',
-		  extras: "--extra-vars 'image==$IMAGE'"
+		  extras: "--extra-vars 'image==dockerImage'"
 		)
 	  }	
     }
