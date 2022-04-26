@@ -39,9 +39,7 @@ pipeline {
     }
     stage("echo image name") {
       steps {
-	    script { 
-		  sh 'echo ${dockerImage}'
-	    }	
+        echo 'the docker image is ${dockerImage}'
       }
     }
 	  
