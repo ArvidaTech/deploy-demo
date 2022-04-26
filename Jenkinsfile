@@ -50,7 +50,7 @@ pipeline {
 		  credentialsId: 'private_key',
 		  playbook: 'playbook.yml',
 		  inventory: '${HOST},',
-		  extras: "--extra-vars 'image=dockerImage'"
+		  extras: "--extra-vars 'image=$dockerImage'"
 		)
 	  }	
     }
