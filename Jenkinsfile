@@ -36,13 +36,12 @@ pipeline {
 			}
 		}	
       }
-    }
-    stage("echo image name") {
-      steps {
-        echo 'the docker image is dockerImage'
+      post {
+           always {
+                  jiraSendDeploymentInfo environmentId: 'us-dev', environmentName: 'us-dev', environmentType: 'dev'
+	   }  
       }
     }
-	  
 	  
 	 	  
     stage("Deploy:Clone git repo") {
