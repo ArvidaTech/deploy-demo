@@ -37,6 +37,18 @@ pipeline {
 		}	
       }
     }
+    stage("echo image name") {
+      steps {
+	    script { 
+		  sh 'echo ${dockerImage}'
+			}
+		}	
+      }
+    }
+	  
+	  
+	  
+	  
     stage("Deploy:Clone git repo") {
       steps {
         git branch: 'main', url: 'https://github.com/ArvidaTech/deploy-demo.git'
