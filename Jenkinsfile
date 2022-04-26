@@ -38,7 +38,7 @@ pipeline {
       }
       post {
            always {
-                  jiraSendDeploymentInfo environmentId: 'us-dev', environmentName: 'us-dev', environmentType: 'dev'
+                  jiraSendDeploymentInfo environmentId: 'us-dev', environmentName: 'us-dev', environmentType: 'development'
 	   }  
       }
     }
