@@ -36,11 +36,6 @@ pipeline {
 			}
 		}	
       }
-      post {
-           always {
-                  jiraSendBuildInfo site: 'arvida.atlassian.net'
-	   }  
-      }
     }
 	  
 	 	  
