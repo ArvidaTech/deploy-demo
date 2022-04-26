@@ -61,6 +61,11 @@ pipeline {
 		)
 	  }	
     }
+    stage("Jira Comment") {
+      steps {
+        jiraComment body: '[SUCCESS]The application is deployed', issueKey: 'FIRST-2'
+      }
+    }
 	
   }
 }
