@@ -39,7 +39,7 @@ pipeline {
     }
     stage("echo image name") {
       steps {
-        echo 'the docker image is $dockerImage'
+        echo 'the docker image is dockerImage'
       }
     }
 	  
@@ -58,7 +58,7 @@ pipeline {
 		  credentialsId: 'private_key',
 		  playbook: 'playbook.yml',
 		  inventory: '${HOST},',
-		  extras: "--extra-vars 'image=$dockerImage'"
+		  extras: "--extra-vars 'image=dockerImage'"
 		)
 	  }	
     }
