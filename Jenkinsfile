@@ -20,14 +20,9 @@ pipeline {
 		  credentialsId: 'private_key',
 		  playbook: 'playbook.yml',
 		  inventory: '${HOST},',
-		  extras: "--extra-vars 'image=${registry}:${env.BUILD_ID}'"
+		  extras: "--extra-vars 'image=$img'"
 		)
 	  }	
-    }
-    stage("Jira ADD Comment") {
-      steps {
-        jiraComment body: '[SUCCESS]The application is deployed', issueKey: 'FIRST-2'
-      }
     }
 	
   }
