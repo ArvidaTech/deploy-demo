@@ -20,7 +20,7 @@ pipeline {
 		  credentialsId: 'private_key',
 		  playbook: 'playbook.yml',
 		  inventory: '${HOST},',
-		  extras: "--extra-vars 'image=$img'"
+		  extras: "--extra-vars 'image=${img}'"
 		)
 	  }	
     }
